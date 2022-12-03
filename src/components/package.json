@@ -1,0 +1,12 @@
+{
+  "name": "web-component-mobile",
+  "version": "1.0.1",
+  "description": "这个是基于Web Components、shadow DOM构建的一个高用户体验的UI组件！主要用于移动端！！！你可以用于html、Vue以及其他流行的框架中！",
+  "main": "npmIndex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["ui UI web component shadow DOM 移动端 mobile vue vue3"],
+  "author": "635814912@qq.com",
+  "license": "ISC"
+}
