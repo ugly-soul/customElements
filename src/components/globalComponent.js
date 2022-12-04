@@ -5,13 +5,17 @@
 */
 
 import toast from './toast/toast'
+import loading from './loading/loading'
 
 export default function() {
   const winObj = Object.create(null)
   Object.assign(
     winObj,
     {
-      showToast: new toast().show.bind(new toast())
+      showToast: new toast().show.bind(new toast()),
+      showLoading: new loading().show.bind(new loading()),
+      hideLoading: new loading().hide.bind(new loading()),
+      loadingConfig: null
     }
   )
   
