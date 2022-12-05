@@ -3,19 +3,24 @@
     <toast-demo></toast-demo>
     <br>
     <loading-demo></loading-demo>
+    <br>
+    <pull-refresh-demo></pull-refresh-demo>
   </div>
 </template>
 
 <script setup>
-import { createApp } from 'vue';
+import { createApp, nextTick, onMounted, ref } from 'vue';
 // toast
 import toastDemo from './exampleVue/toastDemo.vue'
 // loading
 import loadingDemo from './exampleVue/loadingDemo.vue'
+// pullrefresh
+import pullRefreshDemo from './exampleVue/pullRefreshDemo.vue'
 
 createApp().component(
   toastDemo,
-  loadingDemo
+  loadingDemo,
+  pullRefreshDemo
 )
 </script>
 

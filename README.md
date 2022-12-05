@@ -5,9 +5,9 @@
 如果需要兼容的IE浏览器，可能有些吃力！
 毫不意外，它天然的支持html！因为鄙人只会[ vue ](https://cn.vuejs.org/)框架。就以[ vue ](https://cn.vuejs.org/)来演示。如果你还会[ react ](https://reactjs.org/)或者[ angular ](https://angular.cn/)等其他框架，你不妨大胆的在你的项目中来使用它！！！
 
-$\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$
-[xing-ui-mobile](https://www.npmjs.com/package/xing-ui-mobile)
-[xing-ui-mobile-v3](https://www.npmjs.com/package/xing-ui-mobile-v3)
+$\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ \ 
+[xing-ui-mobile](https://www.npmjs.com/package/xing-ui-mobile) \ 
+[xing-ui-mobile-v3](https://www.npmjs.com/package/xing-ui-mobile-v3) \ 
 可以点击上方链接🔗即可跳转！
 
 
@@ -52,7 +52,7 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$
     语句：
       _that.showLoading() // 显示加载动画
       _that.hideLoading() // 隐藏加载动画
-      
+
     使用方式：
       <button demoBtn @click="Loading(true)">展示默认加载动画</button>
       <button demoBtn @click="customLoading">展示自定义加载动画</button>
@@ -107,5 +107,63 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$
           Loading(true)
         }
       </script>
+  ```
+
+## pullRefresh 下拉刷新组件
+  ```javascript
+    使用方式：
+    在需要的页面引入：
+    import 'web-component-mobile/pullRefresh/xingPullRefresh'
+
+    完整演示代码：
+    <xing-pull-refresh ref="refreshDom">
+      <div slot="content">
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+        <div>我是内容～</div>
+      </div>
+    </xing-pull-refresh>
+
+    <script setup>
+      import 'web-component-mobile/pullRefresh/xingPullRefresh'
+      import { nextTick, onMounted, ref } from 'vue';
+
+      const refreshDom = ref()
+      onMounted(() => {
+        nextTick(() => {
+          refreshDom.value.addEventListener('refreshEvent', (e) => {
+            const { detail } = e
+            if (detail.status) { //如果是打开状态，模拟请求3s关闭动画
+              setTimeout(() => {
+                detail.closeRefresh()
+              }, 3000)
+            }
+          })
+        })
+      })
+    </script>
+
+    提示：
+      // 因为我内部使用的customEvent自定义的事件，且绑定到了 xing-pull-refresh 这个 元素上。
+      // 所以需要监听该元素上的 ‘refreshEvent’ 这个事件
+
+    该事件参数：
+      status: 状态，当前是打开还是关闭
+      closeRefresh: 关闭动画方法。
+
+    slot插槽：
+      icon：动画区域，可传入自定义加载动画
+      content：内容区域
   ```
 
