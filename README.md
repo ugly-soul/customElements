@@ -5,9 +5,9 @@
 如果需要兼容的IE浏览器，可能有些吃力！
 毫不意外，它天然的支持html！因为鄙人只会[ vue ](https://cn.vuejs.org/)框架。就以[ vue ](https://cn.vuejs.org/)来演示。如果你还会[ react ](https://reactjs.org/)或者[ angular ](https://angular.cn/)等其他框架，你不妨大胆的在你的项目中来使用它！！！
 
-$\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ \ 
-[xing-ui-mobile](https://www.npmjs.com/package/xing-ui-mobile) \ 
-[xing-ui-mobile-v3](https://www.npmjs.com/package/xing-ui-mobile-v3) \ 
+$\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ <br>
+[xing-ui-mobile](https://www.npmjs.com/package/xing-ui-mobile) <br>
+[xing-ui-mobile-v3](https://www.npmjs.com/package/xing-ui-mobile-v3) <br> 
 可以点击上方链接🔗即可跳转！
 
 
