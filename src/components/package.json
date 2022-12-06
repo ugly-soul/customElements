@@ -1,6 +1,6 @@
 {
   "name": "web-component-mobile",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "这个是基于Web Components、shadow DOM构建的一个高用户体验的UI组件！主要用于移动端！！！你可以用于html、Vue以及其他流行的框架中！",
   "main": "npmIndex.js",
   "scripts": {
