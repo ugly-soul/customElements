@@ -63,6 +63,8 @@ class xingPullRefresh extends HTMLElement {
     this._status = false
     this._spaceHeight = 0
     this._scrollTopY = 0
+
+    this._refreshBoxIsHidden = false
   }
 
   closeRefresh() {
@@ -116,14 +118,25 @@ class xingPullRefresh extends HTMLElement {
 
     // domEvent
     this._mounted()
-    this._contentBox.onscroll = () => {
+    this._contentBox.ontouchmove = () => {
       if (this._space) {
         this._scrollTopY = this._space.getBoundingClientRect().top
       }
     }
 
+    this._contentBox.ontouchstart = () => {
+      const _content = this._refreshBox.getBoundingClientRect()
+      this._refreshBoxIsHidden = (_content.y <= 0 || _content.y < -_content.height)
+      if (this._refreshBoxIsHidden) {
+        this._swipeBox.classList.remove('list')
+      } else {
+        this._swipeBox.classList.add('list')
+      }
+    }
+    
     this._contentBox.ontouchend = () => {
       if (this._status) return;
+      this._swipeBox.classList.add('list')
       const transitionDuration = window.getComputedStyle(this._contentBox).transitionDuration
       const absTime = parseFloat(transitionDuration)
       const time = absTime ? absTime * 1000 : 0
