@@ -5,29 +5,31 @@
     <loading-demo></loading-demo>
     <br>
     <pull-refresh-demo></pull-refresh-demo>
+    <br>
+    <swipe-cell-demo></swipe-cell-demo>
   </div>
 </template>
 
 <script setup>
-import { createApp, nextTick, onMounted, ref } from 'vue';
+import { createApp } from 'vue';
 // toast
 import toastDemo from './exampleVue/toastDemo.vue'
 // loading
 import loadingDemo from './exampleVue/loadingDemo.vue'
 // pullrefresh
 import pullRefreshDemo from './exampleVue/pullRefreshDemo.vue'
+// swipeCell
+import swipeCellDemo from './exampleVue/swipeCellDemo.vue'
 
 createApp().component(
   toastDemo,
   loadingDemo,
-  pullRefreshDemo
+  pullRefreshDemo,
+  swipeCellDemo
 )
 </script>
 
 <style>
-#app {
-  height: 2000px;
-}
 .custom-element {
   display: grid;
   grid-template-columns: auto;
