@@ -25,13 +25,17 @@ createApp().component(
 </script>
 
 <style>
+#app {
+  height: 2000px;
+}
 .custom-element {
   display: grid;
   grid-template-columns: auto;
   row-gap: 5px;
 }
-[demoBtn] {
+nav {
   position: sticky;
   top: 0;
+  background-color: #fff;
 }
 </style>

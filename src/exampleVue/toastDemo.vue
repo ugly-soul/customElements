@@ -1,6 +1,7 @@
 <template>
-  <button demoBtn @click="onClick1">显示Toast1</button>
-  <button demoBtn @click="onClick2">显示Toast2</button>
+  <nav>Toast</nav>
+  <button @click="onClick1">显示Toast1</button>
+  <button @click="onClick2">显示Toast2</button>
 </template>
 
 <script setup>

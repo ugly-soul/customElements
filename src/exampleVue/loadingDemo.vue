@@ -1,7 +1,8 @@
 <template>
-  <button demoBtn @click="Loading(true)">展示默认加载动画</button>
-  <button demoBtn @click="customLoading">展示自定义加载动画</button>
-  <button demoBtn @click="Loading(false)">隐藏加载动画/加载完成</button>
+  <nav>Loading</nav>
+  <button @click="Loading(true)">展示默认加载动画</button>
+  <button @click="customLoading">展示自定义加载动画</button>
+  <button @click="Loading(false)">隐藏加载动画/加载完成</button>
 </template>
 
 <script setup>

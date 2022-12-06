@@ -1,7 +1,8 @@
 <template>
+  <nav>pullRefresh</nav>
   <xing-pull-refresh ref="refreshDom">
     <div slot="content">
-      <div>我是内容～</div>
+      <div>我是内容下拉展示刷新～</div>
       <div>我是内容～</div>
       <div>我是内容～</div>
       <div>我是内容～</div>

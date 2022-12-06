@@ -57,9 +57,9 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
       _that.hideLoading() // 隐藏加载动画
 
     使用方式：
-      <button demoBtn @click="Loading(true)">展示默认加载动画</button>
-      <button demoBtn @click="customLoading">展示自定义加载动画</button>
-      <button demoBtn @click="Loading(false)">隐藏加载动画/加载完成</button>   
+      <button @click="Loading(true)">展示默认加载动画</button>
+      <button @click="customLoading">展示自定义加载动画</button>
+      <button @click="Loading(false)">隐藏加载动画/加载完成</button>   
       
       <script setup>
         const Loading = (bool) => {
@@ -129,7 +129,7 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
     完整演示代码：
     <xing-pull-refresh ref="refreshDom">
       <div slot="content">
-        <div>我是内容～</div>
+        <div>我是内容下拉展示刷新～</div>
         <div>我是内容～</div>
         <div>我是内容～</div>
         <div>我是内容～</div>
