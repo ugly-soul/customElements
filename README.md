@@ -179,3 +179,26 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
       content：内容区域
   ```
 
+## swipeCell 滑动单元格组件
+  ```javascript
+    使用方式：
+    在需要的页面引入：
+    import 'web-component-mobile/swipe/xingSwipeCell'
+
+    完整演示代码：
+    <template>
+      <xing-swipe-cell>
+        <div slot="content">插槽演示</div>
+        <div slot="right" style="background-color: antiquewhite; height: 100%;">我是自定义内容</div>
+      </xing-swipe-cell>
+    </template>
+
+    <script setup>
+      import 'web-component-mobile/swipe/xingSwipeCell'
+    </script>
+
+    slot插槽：
+      right：右侧自定义内容区域
+      content：单元格主要内容区域
+  ```
+

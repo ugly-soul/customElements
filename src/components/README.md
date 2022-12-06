@@ -17,6 +17,7 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
   ```
 
 ## 使用：
+  [对于消除使用vue未注册组件的警告教程](https://cn.vuejs.org/guide/extras/web-components.html#using-custom-elements-in-vue)
   ```javascript
   在入口文件中引用：
     import globalComponent from 'web-component-mobile'
@@ -57,9 +58,9 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
       _that.hideLoading() // 隐藏加载动画
 
     使用方式：
-      <button demoBtn @click="Loading(true)">展示默认加载动画</button>
-      <button demoBtn @click="customLoading">展示自定义加载动画</button>
-      <button demoBtn @click="Loading(false)">隐藏加载动画/加载完成</button>   
+      <button @click="Loading(true)">展示默认加载动画</button>
+      <button @click="customLoading">展示自定义加载动画</button>
+      <button @click="Loading(false)">隐藏加载动画/加载完成</button>   
       
       <script setup>
         const Loading = (bool) => {
@@ -129,7 +130,7 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
     完整演示代码：
     <xing-pull-refresh ref="refreshDom">
       <div slot="content">
-        <div>我是内容～</div>
+        <div>我是内容下拉展示刷新～</div>
         <div>我是内容～</div>
         <div>我是内容～</div>
         <div>我是内容～</div>
@@ -176,5 +177,28 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
     slot插槽：
       icon：动画区域，可传入自定义加载动画
       content：内容区域
+  ```
+
+## swipeCell 滑动单元格组件
+  ```javascript
+    使用方式：
+    在需要的页面引入：
+    import 'web-component-mobile/swipe/xingSwipeCell'
+
+    完整演示代码：
+    <template>
+      <xing-swipe-cell>
+        <div slot="content">插槽演示</div>
+        <div slot="right" style="background-color: antiquewhite; height: 100%;">我是自定义内容</div>
+      </xing-swipe-cell>
+    </template>
+
+    <script setup>
+      import 'web-component-mobile/swipe/xingSwipeCell'
+    </script>
+
+    slot插槽：
+      right：右侧自定义内容区域
+      content：单元格主要内容区域
   ```
 
