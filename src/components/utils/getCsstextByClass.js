@@ -17,7 +17,7 @@ export default function(targetClassName = '', callback) {
     [...item].filter(it => {
       if (classNameList.includes(it.selectorText)) {
         cssText += it.cssText
-        callback(it.selectorText.slice(1, Infinity))
+        callback(it.selectorText.substring(1))
         return true;
       }
       return false;

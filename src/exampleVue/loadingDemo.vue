@@ -22,6 +22,10 @@ const customLoading = () => {
         width: 44px;
         display: grid;
         place-items: center;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
       }
       .animation-demo > span {
         height: 19px;

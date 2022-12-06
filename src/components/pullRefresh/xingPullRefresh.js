@@ -68,6 +68,7 @@ class xingPullRefresh extends HTMLElement {
   closeRefresh() {
     this._status = false
     this._swipeBox.scrollTop = this._spaceHeight
+    this._swipeBox.style.visibility = 'visible'
   }
 
   _mounted() {
@@ -103,14 +104,15 @@ class xingPullRefresh extends HTMLElement {
     this._swipeBox.appendChild(this._refreshBox);
     this._swipeBox.appendChild(this._contentBox);
 
-    let style = this.getAttribute('style')
-    let _class = this.getAttribute('class')
+    // let style = this.getAttribute('style')
+    // let _class = this.getAttribute('class')
     shadow.innerHTML = `
       <style>
         ${this._mySwipeStyle}
       </style>
     `;
     shadow.appendChild(this._swipeBox)
+    this._swipeBox.style.visibility = 'hidden'
 
     // domEvent
     this._mounted()

@@ -21,8 +21,7 @@
 
 <script setup>
 import { nextTick, onMounted, ref } from 'vue';
-// import 'web-component-mobile/pullRefresh/xingPullRefresh'
-import '../components/pullRefresh/xingPullRefresh'
+import 'web-component-mobile/pullRefresh/xingPullRefresh'
 
 const refreshDom = ref()
 onMounted(() => {

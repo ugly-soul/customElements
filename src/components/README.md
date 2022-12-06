@@ -24,6 +24,9 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
     
     对于全局js调用的组件，会挂载到 window._that 下。
     非全局js调用的组件，则根据自己的需求按需引入！
+
+    tips:
+      如果按需引入组件，则需要在项目入口文件中引入总包，否则无法使用！
   ```
 ### toast组件
   ```javascript
@@ -81,6 +84,14 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
                 width: 44px;
                 display: grid;
                 place-items: center;
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
               }
               .animation-demo > span {
                 height: 19px;
