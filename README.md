@@ -17,6 +17,7 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
   ```
 
 ## 使用：
+  [对于消除使用vue未注册组件的警告教程](https://cn.vuejs.org/guide/extras/web-components.html#using-custom-elements-in-vue)
   ```javascript
   在入口文件中引用：
     import globalComponent from 'web-component-mobile'
