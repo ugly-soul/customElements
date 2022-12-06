@@ -128,11 +128,7 @@ class xingPullRefresh extends HTMLElement {
       const absTime = parseFloat(transitionDuration)
       const time = absTime ? absTime * 1000 : 0
       setTimeout(() => {
-        if (this._scrollTopY > 0 || this._scrollTopY === 0) {
-          this._status = true
-        } else {
-          this._status = false
-        }
+        this._status = (this._scrollTopY >= 0);
         customEvent(this, 'refreshEvent', {
           status: this._status,
           closeRefresh: this.closeRefresh.bind(this)
