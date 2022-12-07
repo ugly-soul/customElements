@@ -32,17 +32,6 @@ class xingSwipeCell extends HTMLElement {
       .space {
         flex: 0 0 4rem;
       }
-      .xing-dragcell-button {
-        border: 0;
-        padding: 0;
-        font-size: 12px;
-        color: #fff;
-        width: 60px;
-        height: 100%;
-        position: absolute;
-        right: 0;
-        outline: 0;
-      }
       /* 自动右边缘定位 */
       .scroll-snap {
         scroll-snap-type: x mandatory;
@@ -69,9 +58,6 @@ class xingSwipeCell extends HTMLElement {
         background-color: transparent;
         z-index: -10;
         outline: 0;
-      }
-      .perspective .xing-dragcell-button:first-of-type {
-        transform: translate3D(22px, 0, -3px) scale(4);
       }
     `
     this._swipeCellBox = null
@@ -100,6 +86,7 @@ class xingSwipeCell extends HTMLElement {
     this._contentBox.classList.add('content')
     this._input = document.createElement('input')
     this._input.classList.add('xing-touch-input')
+    this._input.setAttribute('type', 'button')
     this._contentSlot = document.createElement('slot')
     this._contentSlot.setAttribute('name', 'content')
     this._contentSlot.innerHTML = `
