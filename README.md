@@ -36,10 +36,12 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
 
 
     使用场景1：
-      fetch('http://xxxxxx.com/getxxxx').then(res => {
-        _that.showToast(res.msg || 'success！')
-      })
-    
+      fetch('http://xxxxxx.com/getxxxx')
+        .then(res => res.json())
+        .then(res => {
+          _that.showToast(res.msg || 'success！')
+        })
+        
     使用场景2:
       <template>
         <img src="xxxxx.png" @click="inertClick"/>
