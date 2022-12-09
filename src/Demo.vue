@@ -7,6 +7,9 @@
     <pull-refresh-demo></pull-refresh-demo>
     <br>
     <swipe-cell-demo></swipe-cell-demo>
+    <br>
+    <br>
+    <swipe-demo></swipe-demo>
   </div>
 </template>
 
@@ -20,12 +23,15 @@ import loadingDemo from './exampleVue/loadingDemo.vue'
 import pullRefreshDemo from './exampleVue/pullRefreshDemo.vue'
 // swipeCell
 import swipeCellDemo from './exampleVue/swipeCellDemo.vue'
+// swipe
+import swipeDemo from './exampleVue/swipeDemo.vue'
 
 createApp().component(
   toastDemo,
   loadingDemo,
   pullRefreshDemo,
-  swipeCellDemo
+  swipeCellDemo,
+  swipeDemo
 )
 </script>
 
@@ -39,5 +45,6 @@ nav {
   position: sticky;
   top: 0;
   background-color: #fff;
+  font-size: 16px;
 }
 </style>
