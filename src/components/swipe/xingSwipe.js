@@ -30,10 +30,11 @@ class xingSwipe extends HTMLElement {
       }
       .dot-box {
         position: absolute;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         width: 100%;
+        margin-top: 6px;
       }
       .dot {
         border-radius: 50%;
@@ -44,15 +45,21 @@ class xingSwipe extends HTMLElement {
         background-color: transparent;
         transition: all 0.2s ease;
         transform: scale(1);
-        &.active {
-          background-color: grey;
-          transform: scale(1.5);
-        }
+      }
+      .active {
+        background-color: grey;
+        transform: scale(1.5);
       }
     `
 
     this._scrollBox = null
     this._swipeContent = null
+    this._dotBox = null
+
+    this._timerScrollEndDetect = null
+    this._currentIndex = 0
+    this._oldIndex = 0
+    this._showDots = false
   }
 
   _render() {
@@ -72,6 +79,7 @@ class xingSwipe extends HTMLElement {
           )
           this.removeChild(item)
         })
+        this._appendPoint(tempDom.length)
       }
     } else {
       console.error(
@@ -81,10 +89,31 @@ class xingSwipe extends HTMLElement {
     }
   }
 
+  _appendPoint(length) {
+    if (!this._showDots) return;
+    this._dotBox = document.createElement('div')
+    this._dotBox.classList.add('dot-box')
+    for (let i = 0; i < length; i ++) {
+      let _dot = document.createElement('div')
+      _dot.classList.add('dot')
+      this._dotBox.appendChild(_dot)
+    }
+    this._scrollBox.appendChild(this._dotBox)
+    this._updatePointClass()
+  }
+
+  _updatePointClass() {
+    if (!this._showDots) return;
+    this._dotBox.children[this._oldIndex].classList.remove('active')
+    this._dotBox.children[this._currentIndex].classList.add('active')
+  }
+
   connectedCallback() {
     const shadow = this.attachShadow({
       mode: 'closed'
     })
+
+    this._showDots = this.hasAttribute('show-dots')
 
     this._styleAttr = this.getAttribute('style') || ''
 
@@ -102,6 +131,29 @@ class xingSwipe extends HTMLElement {
     shadow.appendChild(this._scrollBox)
 
     this._render()
+
+    // 监听当前滚动到的选项
+    this._swipeContent.onscroll = (e) => {
+      // 滚动事件开始
+      clearTimeout(this._timerScrollEndDetect);
+      this._timerScrollEndDetect = null;
+      this._timerScrollEndDetect = setTimeout(() => {
+        // 20毫秒内滚动事件没触发，认为停止滚动了
+        // 对列表元素进行位置检测
+        [].slice.call(this._swipeContent.children).forEach((eleList, index) => {
+          if (
+            Math.abs(
+              eleList.getBoundingClientRect().left -
+                this._swipeContent.getBoundingClientRect().left
+            ) < 10
+          ) {
+            this._oldIndex = this._currentIndex
+            this._currentIndex = index;
+            this._updatePointClass()
+          }
+        });
+      }, 20);
+    }
   }
 }
 
