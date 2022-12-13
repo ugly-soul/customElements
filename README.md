@@ -214,15 +214,15 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
 
   完整演示代码：
     <xing-swipe ref="xingSwipe">
-      <div slot="content">
-        <div content-name="text"></div>
-        <div content-other="html"></div>
-        <img content-path="src" />
+      <div slot="content" v-for="(item, index) in arr" :key="index">
+        <div>{{ item.name }}</div>
+        <div v-html="item.other"></div>
+        <img :src="item.path" />
       </div>
     </xing-swipe>
 
     <script setup>
-      import { nextTick, onMounted, ref } from 'vue';
+      import { ref } from 'vue';
       import 'web-component-mobile/swipe/xingSwipe'
 
       const arr = ref([
@@ -237,37 +237,11 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
           other: '<span style="color: blue;">wow~</span>'
         }
       ])
-
-      const xingSwipe = ref()
-
-      onMounted(() => {
-        nextTick(() => {
-          xingSwipe.value._dataList( // 传入需要显示的数据
-            arr.value
-          )
-        })
-      })
     </script>
 
     提示：
-    // xingSwipe该元素抛出一个 _dataList 方法提供传入数据，数据需要数组类型。
+      slot：
+      // 具名插槽需要是content，即：slot=“content” 。如果不是content，则无法映射对应的元素
 
-    slot：
-    // 具名插槽需要是content，即：slot=“content”
-
-    注意：
-      给 _dataList 传入的数据，会在内部进行构造。但它并不知道你需要转换成什么类型的元素
-      所以需要指定它：
-      如：<div content-name="text"></div>
-        content：具名插槽
-        name：是你传入数据的key
-        text：是转换的类型，它仅仅只有三中类型 (
-              1、  text: 会转换为元素的innerText。
-              2、  html: 会转换为元素的innerHTML。
-              3、  src: 会给元素设置src属性
-              )
-    
-    其他：
-      目前数据只支持单层对象，并不支持深度解析！！！
 ```
 

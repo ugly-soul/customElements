@@ -53,60 +53,37 @@ class xingSwipe extends HTMLElement {
 
     this._scrollBox = null
     this._swipeContent = null
-
-    this._sourceData = []
-  }
-
-  _dataList(data) {
-    if (!Array.isArray(data)) {
-      console.error('%c xingSwipe dataList 数据格式有误，需要传入数组类型哦~', 'font-size: 16px;');
-    } else {
-      this._sourceData = data
-      this._render()
-    }
   }
 
   _render() {
-    const slotDom = (this.children || [null])[0] || null
+    const slotDom = (this.children || []) || []
     if (slotDom) {
-      if (slotDom.getAttribute('slot') !== 'content') {
-        console.error('%c slot命中失败！请检查slot是否为content！', 'font-size: 16px;');
+      const tempDom = [...slotDom].filter(item => item.getAttribute('slot') === 'content')
+      if (!tempDom || tempDom.length === 0) {
+        console.error(
+          '%c slot命中失败！请检查slot是否为content！',
+          'font-size: 16px;'
+        );
       } else {
-        const children = [...slotDom.children]
-        this._sourceData.map(item => {
-          const arg = Object.entries(item)
-          arg.map(item => {
-            const _key = item[0]
-            const _value = item[1]
-            const _attr = `content-${_key}`
-            const filterArr = children.filter(item => {
-              return item.hasAttribute(_attr)
-            })
-            const type = (filterArr[0] || {
-              getAttribute: () => ''
-            }).getAttribute(_attr)
-            if (type === 'text') {
-              filterArr[0].innerText = _value
-            } else if (type === 'src') {
-              filterArr[0].setAttribute(type, _value)
-            } else if (type === 'html') {
-              filterArr[0].innerHTML = _value
-            }
-            slotDom.setAttribute('style', this._styleAttr)
-          })
+        tempDom.map(item => {
+          item.setAttribute('style', this._styleAttr)
           this._swipeContent.appendChild(
-            slotDom.cloneNode(true)
+            item.cloneNode(true)
           )
+          this.removeChild(item)
         })
       }
     } else {
-      console.error('%c xingSwipe slot 不存在！', 'font-size: 16px;');
+      console.error(
+        '%c xingSwipe slot 不存在！',
+        'font-size: 16px;'
+      );
     }
   }
 
   connectedCallback() {
     const shadow = this.attachShadow({
-      mode: 'open'
+      mode: 'closed'
     })
 
     this._styleAttr = this.getAttribute('style') || ''
@@ -123,6 +100,8 @@ class xingSwipe extends HTMLElement {
       </style>
     `
     shadow.appendChild(this._scrollBox)
+
+    this._render()
   }
 }
 

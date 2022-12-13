@@ -2,16 +2,16 @@
   <nav>SwipeCell</nav>
   <hr>
   <xing-swipe ref="xingSwipe">
-    <div slot="content">
-      <div content-name="text"></div>
-      <div content-other="html"></div>
-      <img content-path="src" />
+    <div slot="content" v-for="(item, index) in arr" :key="index">
+      <div>{{ item.name }}</div>
+      <div v-html="item.other"></div>
+      <img :src="item.path" />
     </div>
   </xing-swipe>
 </template>
 
 <script setup>
-import { nextTick, onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import 'web-component-mobile/swipe/xingSwipe'
 
 const arr = ref([
@@ -26,14 +26,4 @@ const arr = ref([
     other: '<span style="color: blue;">wow~</span>'
   }
 ])
-
-const xingSwipe = ref()
-
-onMounted(() => {
-  nextTick(() => {
-    xingSwipe.value._dataList(
-      arr.value
-    )
-  })
-})
 </script>
