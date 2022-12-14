@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { nextTick, onMounted, ref } from 'vue';
 import 'web-component-mobile/swipe/xingSwipe'
 
 const arr = ref([
@@ -26,4 +26,17 @@ const arr = ref([
     other: '<span style="color: blue;">wow~</span>'
   }
 ])
+
+const xingSwipe = ref()
+
+onMounted(() => {
+  nextTick(() => {
+    xingSwipe.value.addEventListener('swipeIndex', (e) => {
+      const { oldIndex, newIndex } = e.detail
+      console.log(
+        `上一个指示点下标：${oldIndex}, 当前指示点下标：${newIndex}`
+      );
+    })
+  })
+})
 </script>

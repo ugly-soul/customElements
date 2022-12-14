@@ -206,14 +206,15 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
 
 ## xingSwipe 轮播组件
 ```javascript
-  目前该组件暂不支持显示指示点、自动轮播功能！！！
+  目前该组件暂不支持自动轮播功能！！！
 
   使用方式：
     在需要的页面引入：
   import 'web-component-mobile/swipe/xingSwipe'
 
   完整演示代码：
-    <xing-swipe ref="xingSwipe">
+    <!-- show-points：显示指示点 -->
+    <xing-swipe show-points>
       <div slot="content" v-for="(item, index) in arr" :key="index">
         <div>{{ item.name }}</div>
         <div v-html="item.other"></div>
@@ -242,6 +243,25 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
     提示：
       slot：
       // 具名插槽需要是content，即：slot=“content” 。如果不是content，则无法映射对应的元素
+
+      props：
+      // show-points：如果指定该属性，则显示内置指示点。
+      如果你感觉内置的指示点样式不美观，该组件也抛出了当前滑动到的选项下标，你可以根据自己需求来定制指示点。示例：
+      <xing-swipe ref="xingSwipe">
+        *****
+      </xing-swipe>
+
+      onMounted(() => {
+        nextTick(() => {
+          // 通过监听该组件swipeIndex事件得到detail中返回的index
+          xingSwipe.value.addEventListener('swipeIndex', (e) => {
+            const { oldIndex, newIndex } = e.detail
+            console.log(
+              `上一个指示点下标：${oldIndex}, 当前指示点下标：${newIndex}`
+            );
+          })
+        })
+      })
 
 ```
 

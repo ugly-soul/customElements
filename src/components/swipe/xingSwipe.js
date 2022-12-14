@@ -4,6 +4,7 @@
  * @Date 2022-12-09 19:26:19
 */
 
+import customEvent from "../utils/customEvent"
 class xingSwipe extends HTMLElement {
   constructor() {
     super()
@@ -113,7 +114,7 @@ class xingSwipe extends HTMLElement {
       mode: 'closed'
     })
 
-    this._showDots = this.hasAttribute('show-dots')
+    this._showDots = this.hasAttribute('show-points')
 
     this._styleAttr = this.getAttribute('style') || ''
 
@@ -149,7 +150,17 @@ class xingSwipe extends HTMLElement {
           ) {
             this._oldIndex = this._currentIndex
             this._currentIndex = index;
-            this._updatePointClass()
+            if (this._oldIndex !== this._currentIndex) {
+              customEvent(
+                this,
+                'swipeIndex',
+                {
+                  oldIndex: this._oldIndex,
+                  newIndex: this._currentIndex
+                }
+              )
+              this._updatePointClass()
+            }
           }
         });
       }, 20);
