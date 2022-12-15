@@ -78,11 +78,13 @@
        .xing-toast {
          border-radius: 4px;
          min-height: 20px;
-         line-height: 50%;
+         max-width: calc(100vw - 64px);
+         max-height: calc(100vh - 88px);
          background-color: rgba(0, 0, 0, 0.7);
          color: #fff;
          display: inline-flex;
          place-items: center;
+         word-break: break-all;
          padding: 9px 1em;
          position: fixed;
          left: 50%;
