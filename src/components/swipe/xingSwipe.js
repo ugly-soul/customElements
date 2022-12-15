@@ -65,7 +65,7 @@ class xingSwipe extends HTMLElement {
 
   _render() {
     const slotDom = (this.children || []) || []
-    if (slotDom) {
+    if (slotDom.length > 0) {
       const tempDom = [...slotDom].filter(item => item.getAttribute('slot') === 'content')
       if (!tempDom || tempDom.length === 0) {
         console.error(
