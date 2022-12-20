@@ -10,6 +10,8 @@
     <br>
     <br>
     <swipe-demo></swipe-demo>
+    <br>
+    <picker-demo></picker-demo>
   </div>
 </template>
 
@@ -25,13 +27,16 @@ import pullRefreshDemo from './exampleVue/pullRefreshDemo.vue'
 import swipeCellDemo from './exampleVue/swipeCellDemo.vue'
 // swipe
 import swipeDemo from './exampleVue/swipeDemo.vue'
+// picker
+import pickerDemo from './exampleVue/pickerDemo.vue'
 
 createApp().component(
   toastDemo,
   loadingDemo,
   pullRefreshDemo,
   swipeCellDemo,
-  swipeDemo
+  swipeDemo,
+  pickerDemo
 )
 </script>
 
