@@ -265,3 +265,103 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
 
 ```
 
+## xingPicker 选择器组件
+```javascript
+  目前该组件暂不支持默认显示项，不过将在下一个版本支持！！！
+
+  使用方式：
+    在需要的页面引入：
+  import 'web-component-mobile/picker/xingPicker'
+
+  完整演示代码：
+
+  <template>
+    <button @click="okEvent">获取当前选择值</button>
+    <xing-picker ref="xingPicker"></xing-picker>
+  </template>
+
+  <script setup>
+    import { nextTick, onMounted, ref } from 'vue';
+    import 'web-component-mobile/picker/xingPicker'
+
+    const xingPicker = ref()
+    onMounted(() => {
+      nextTick(() => {
+        const picker = xingPicker.value
+        // 通过该组件下的 _dataList 方法传入数据
+        picker._dataList(
+          {
+            //需要显示几列, 最大支持三列
+            columns: 3,
+            axis: {
+              one: { // 映射第一个数据
+                data: 'yearData', // 数据源
+                prop: 'date' // 显示对应key数据
+              },
+              two: { // 映射第二个数据
+                data: 'monthData',
+                prop: 'date'
+              },
+              three: { // 映射第三个数据
+                data: 'dayData',
+                prop: 'date'
+              }
+            },
+            // 数据，需要是数组格式，不支持多维数组
+            yearData: [// 第一列
+              {
+                date: '2022年'
+              },
+              {
+                date: '2023年'
+              },
+              {
+                date: '2024年'
+              }
+            ],
+            monthData: [ // 第二列
+              {
+                date: '01月'
+              },
+              {
+                date: '02月'
+              },
+              {
+                date: '03月'
+              },
+              {
+                date: '04月'
+              },
+              {
+                date: '05月'
+              },
+              {
+                date: '06月'
+              },
+              {
+                date: '07月'
+              }
+            ],
+            dayData: [ // 第三列
+              {
+                date: '01日'
+              },
+              {
+                date: '02日'
+              },
+              {
+                date: '03日'
+              }
+            ],
+          }
+        )
+      })
+    })
+
+    // 为了保证性能，需要自己调用改组件下的 _getPickerValue 方法获取选中的值
+    const okEvent = () => {
+      const res = xingPicker.value._getPickerValue()
+      console.log(res);
+    }
+  </script>
+```
