@@ -267,8 +267,6 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
 
 ## xingPicker 选择器组件
 ```javascript
-  目前该组件暂不支持默认显示项，不过将在下一个版本支持！！！
-
   使用方式：
     在需要的页面引入：
   import 'web-component-mobile/picker/xingPicker'
@@ -277,7 +275,10 @@ $\color{#F56C6C}{题外话：另外推荐我自己基于vue封装的组件：}$ 
 
   <template>
     <button @click="okEvent">获取当前选择值</button>
-    <xing-picker ref="xingPicker"></xing-picker>
+    <!-- tip:  value="2-3-1" 可以指定选中默认值。格式：value="index1,index2,index3"-->
+    <!-- 你可以大胆的使用任何符号进行分割，如“2-3+1” “2*3￥1”-->
+    <!-- 他显示的则是你对应展示列的下标对应的值！ -->
+    <xing-picker ref="xingPicker" value="2-3-1"></xing-picker>
   </template>
 
   <script setup>

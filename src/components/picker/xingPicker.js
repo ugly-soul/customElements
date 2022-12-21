@@ -5,6 +5,9 @@
 */
 
 class xingPicker extends HTMLElement {
+  static get observedAttributes () {
+    return ['value'];
+  }
   constructor() {
     super()
 
@@ -93,6 +96,14 @@ class xingPicker extends HTMLElement {
     this._DATALIST = null
   }
 
+  get _value () {
+    return this.getAttribute('value');
+  }
+
+  set _value (val) {
+    this.setAttribute('value', val);
+  }
+
   _render() {
     if (!this._DATALIST) return;
     const axisArr = ['one', 'two', 'three']
@@ -120,6 +131,7 @@ class xingPicker extends HTMLElement {
     this._pickerBox.appendChild(_hairline)
     const _height = this.getBoundingClientRect().height
     this.style.setProperty('--mark-size', `${(_height - _hairline.offsetHeight) / 2}px`)
+    this._setPickerValue(this.getAttribute('value'))
   }
 
   _dataList(arg) {
@@ -147,6 +159,19 @@ class xingPicker extends HTMLElement {
     return scrollTopArr
   }
 
+  _setPickerValue(attr) {
+    if (this.isConnected) {
+      const rule = /\D\W/g
+      attr = attr.replace(rule, '-')
+      const splitArr = attr.split('-')
+      const child = [...this._pickerBox.children].filter(item => item.hasAttribute('wrapper'))
+      const lastChild = this._pickerBox.lastChild
+      child.map((item, index) => {
+        item.scrollTop = splitArr[index] * lastChild.offsetHeight
+      })
+    }
+  }
+
   connectedCallback() {
     const shadow = this.attachShadow({
       mode: 'closed'
@@ -160,6 +185,12 @@ class xingPicker extends HTMLElement {
     this._pickerBox.classList.add('picker-box')
 
     shadow.appendChild(this._pickerBox)
+  }
+
+  attributeChangedCallback (name, oldval, newval) {
+    if (name == 'value' && this._value) {
+      this._setPickerValue(newval);
+    }
   }
 
 }

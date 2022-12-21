@@ -1,6 +1,6 @@
 <template>
   <nav @click="okEvent">Picker</nav>
-  <xing-picker ref="xingPicker"></xing-picker>
+  <xing-picker ref="xingPicker" value="1-1-2"></xing-picker>
 </template>
 
 <script setup>
