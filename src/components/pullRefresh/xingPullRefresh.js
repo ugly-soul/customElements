@@ -19,6 +19,9 @@ class xingPullRefresh extends HTMLElement {
         overflow-x: hidden;
         scroll-behavior: smooth;
       }
+      .point-event {
+        pointer-events: none;
+      }
       .content {
         background-color: #fff;
         position: relative;
@@ -128,15 +131,15 @@ class xingPullRefresh extends HTMLElement {
       const _content = this._refreshBox.getBoundingClientRect()
       this._refreshBoxIsHidden = (_content.y <= 0 || _content.y < -_content.height)
       if (this._refreshBoxIsHidden) {
-        this._swipeBox.classList.remove('list')
+        this._swipeBox.classList.add('point-event')
       } else {
-        this._swipeBox.classList.add('list')
+        this._swipeBox.classList.remove('point-event')
       }
     }
     
     this._contentBox.ontouchend = () => {
       if (this._status) return;
-      this._swipeBox.classList.add('list')
+      this._swipeBox.classList.remove('point-event')
       const transitionDuration = window.getComputedStyle(this._contentBox).transitionDuration
       const absTime = parseFloat(transitionDuration)
       const time = absTime ? absTime * 1000 : 0
