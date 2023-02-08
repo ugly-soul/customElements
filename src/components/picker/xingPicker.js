@@ -93,6 +93,7 @@ class xingPicker extends HTMLElement {
     `
     this._pickerBox = null
     this._columns = 1
+    this._axisArr = []
     this._DATALIST = null
   }
 
@@ -106,7 +107,7 @@ class xingPicker extends HTMLElement {
 
   _render() {
     if (!this._DATALIST) return;
-    const axisArr = ['one', 'two', 'three']
+    const axisArr = this._axisArr
     for (let i = 0; i < this._columns; i ++) {
       const _axisData = this._DATALIST.axis[axisArr[i]]
       const _data = _axisData.data
@@ -135,8 +136,10 @@ class xingPicker extends HTMLElement {
   }
 
   _dataList(arg) {
-    const { columns } = arg
-    this._columns = (columns || this._columns) <= 3 ? (columns || this._columns) : 3
+    const { columns, axis } = arg
+    const arr = Object.keys(axis)
+    this._columns = (columns || this._columns) > arr.length ? arr.length : (columns || this._columns)
+    this._axisArr = arr || this._axisArr
     this._DATALIST = arg || this._DATALIST
     this._render()
   }
@@ -144,7 +147,7 @@ class xingPicker extends HTMLElement {
   _getPickerValue() {
     const child = [...this._pickerBox.children].filter(item => item.hasAttribute('wrapper'))
     const lastChild = this._pickerBox.lastChild
-    const tempArr = ['one', 'two', 'three']
+    const tempArr = this._axisArr
     const scrollTopArr = child.map((item, i) => {
       const index = item.scrollTop / lastChild.offsetHeight
       const _axisData = this._DATALIST.axis[tempArr[i]]
