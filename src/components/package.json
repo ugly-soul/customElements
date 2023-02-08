@@ -1,6 +1,6 @@
 {
   "name": "web-component-mobile",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "这个是基于Web Components、shadow DOM构建的一个高用户体验的UI组件！主要用于移动端！！！你可以用于html、Vue以及其他流行的框架中！",
   "main": "npmIndex.js",
   "scripts": {
@@ -8,5 +8,6 @@
   },
   "keywords": ["ui UI web component shadow DOM 移动端 mobile vue vue3"],
   "author": "635814912@qq.com",
-  "license": "ISC"
+  "license": "ISC",
+  "homepage": "https://github.com/ugly-soul/customElements"
 }
